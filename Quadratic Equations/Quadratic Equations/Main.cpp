@@ -5,8 +5,16 @@
 int main(int argc, char* argv[])
 {
 	setlocale(LC_ALL, "Russian");
-	QuadEqua c(1, -30, 225);
-	cout << c;
+	QuadEqua c(std::cin);
+	try
+	{
+		cout << c;
+	}
+	catch (std::runtime_error a)
+	{
+		cout << a.what();
+	}
+	
 	_getch();
 	return 0;
 }

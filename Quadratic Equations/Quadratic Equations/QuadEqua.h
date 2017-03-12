@@ -2,6 +2,8 @@
 #ifndef _QUAD_EQUA_H
 #define _QUAD_EQUA_H
 #include <iostream>
+#include <conio.h>
+#include"RationalNumbers.h"
 
 using std::cin;
 using std::cout;
@@ -9,26 +11,27 @@ using std::endl;
 
 namespace Math
 {
-	class QuadEqua
+	class QuadEqua : private RatNum
 	{
 	private:
-		int a;
-		int b;
-		int c;
+		double a;
+		double b;
+		double c;
 
-		int Invert(int) const;
+		double Invert(double) const; // Возвращает обратное значение
+		inline double Discriminant() const {
+			return b*b - 4*a*c;
+		}
+		double check_input(void) const; // Соответсвует ли введенная переменная звдвнным параметрам
 	public:
-		QuadEqua(int,int,int);
+		QuadEqua(double, double, double);
+		QuadEqua(std::istream&);
 		QuadEqua(const QuadEqua&);
 
-		inline int Discriminant() const{
-			return b*b - 4 * a*c;
-		}
-		double X1() const;
-		double X2() const;
+		RatNum X1() const; // Первый корень(рациональная дробь)
+		RatNum X2() const; // Второй корень(рациональная дробь)
 
-		friend int check_input(void);
-		friend std::ostream& operator<<(std::ostream&, const QuadEqua&);
+		friend std::ostream& operator<<(std::ostream&,  QuadEqua&);
 	};
 }
 using namespace Math;
