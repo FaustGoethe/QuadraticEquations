@@ -8,13 +8,12 @@ int main(int argc, char* argv[])
 	QuadEqua c(std::cin);
 	try
 	{
-		cout << c;
+		std::cout << c;
 	}
 	catch (std::runtime_error a)
 	{
-		cout << a.what();
+		std::cout << a.what();
 	}
-	
 	_getch();
 	return 0;
 }

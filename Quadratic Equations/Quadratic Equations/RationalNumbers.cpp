@@ -4,8 +4,7 @@ namespace RATIONAL_NUMBERS
 {
 	RatNum::RatNum() :numerator(1.0), denumerator(1.0){};
 	RatNum::RatNum(const RatNum& v) :numerator(v.numerator), denumerator(v.denumerator){};
-	RatNum::RatNum(int n, long_int d)
-	{
+	RatNum::RatNum(int n, long_int d){
 		if (d != 0)
 		{
 			numerator = n;
@@ -17,8 +16,7 @@ namespace RATIONAL_NUMBERS
 			 denumerator = 1;
 		}
 	}
-	RatNum::RatNum(double n, double d)
-	{
+	RatNum::RatNum(double n, double d){
 		if (d != 0.0)
 		{
 			numerator = n;
@@ -31,12 +29,7 @@ namespace RATIONAL_NUMBERS
 		}
 	}
 
-	RatNum::~RatNum()
-	{
-	}
-
-	double RatNum::NOD(int a, int b) const
-	{
+	double RatNum::NOD(int a, int b) const{
 		if (a < 0)
 			a *= -1;
 		 while (b)
@@ -46,8 +39,7 @@ namespace RATIONAL_NUMBERS
 		 }
 		return a; 
 	}
-	double RatNum::NOK(int a, int b) const
-	{
+	double RatNum::NOK(int a, int b) const{
 		return a*b / NOD(a, b);
 	}
 
@@ -57,16 +49,14 @@ namespace RATIONAL_NUMBERS
 	RatNum::operator long_int(){
 		return (long_int)numerator / (long_int)denumerator;
 	}
-	RatNum& RatNum::Reduction() // Сокращение
-	{
+	RatNum& RatNum::Reduction(){
 		double nod = NOD(numerator, denumerator);
 		numerator /= nod;
 		denumerator /= nod;
 		return *this;
 	}
 
-	RatNum RatNum::operator+(const RatNum& v) const
-	{
+	RatNum RatNum::operator+(const RatNum& v) const{
 		RatNum result;
 		if (denumerator == v.denumerator)
 		{
@@ -83,29 +73,27 @@ namespace RATIONAL_NUMBERS
 		result.Reduction();
 		return result;
 	}
-	RatNum RatNum::operator-(const RatNum& v) const
-	{
+	RatNum RatNum::operator-(const RatNum& v) const{
 		return RatNum(numerator, denumerator) + RatNum(-v.numerator, v.denumerator);
 	}
-	RatNum RatNum::operator*(const RatNum& v) const
-	{
+	RatNum RatNum::operator*(const RatNum& v) const{
 		return RatNum(numerator*v.numerator,denumerator*v.denumerator);
 	}
-	RatNum RatNum::operator/(const RatNum& v) const
-	{
+	RatNum RatNum::operator/(const RatNum& v) const{
 		return RatNum(numerator*v.denumerator, denumerator*v.numerator);
 	}
-	RatNum& RatNum::operator=(const RatNum& v)
-	{
+	RatNum& RatNum::operator=(const RatNum& v){
 		numerator = v.numerator;
 		denumerator = v.denumerator;
 		return *this;
 	}
 
-	std::ostream& operator<<(std::ostream& os,const RatNum& Value)
-	{
+	std::ostream& operator<<(std::ostream& os,const RatNum& Value){
 		os.precision(3);
 		os << Value.numerator << "/" << Value.denumerator;
 		return os;
+	}
+
+	RatNum::~RatNum(){
 	}
 }

@@ -20,24 +20,23 @@ namespace Math
 	QuadEqua::QuadEqua(const QuadEqua& copy_value){
 		a = copy_value.a;
 		b = copy_value.b;
-c = copy_value.c;
+		c = copy_value.c;
 
-if (a < 0) { // тоже, что и умножение уравнения на -1
-	a = Invert(a);
-	b = Invert(b);
-	c = Invert(c);
-}
+		if (a < 0) { // тоже, что и умножение уравнения на -1
+			a = Invert(a);
+			b = Invert(b);
+			c = Invert(c);
+		}
 	}
 	QuadEqua::QuadEqua(std::istream& is) {
 
-		cout << "Введите а: ";
+		std::cout << "Введите а: ";
 		a = check_input();
-		cout << "Введите b: ";
+		std::cout << "Введите b: ";
 		b = check_input();
-		cout << "Введите c: ";
+		std::cout << "Введите c: ";
 		c = check_input();
-		if (a < 0) // тоже, что и умножение уравнения на -1
-		{
+		if (a < 0){ // тоже, что и умножение уравнения на -1
 			a = Invert(a);
 			b = Invert(b);
 			c = Invert(c);
@@ -50,7 +49,7 @@ if (a < 0) { // тоже, что и умножение уравнения на -1
 		else if (value < 0)
 			return std::abs(value);
 
-		throw std::runtime_error("По каким-то неведанным ранее причинам, ппрограмма дошла до выполнения этого кода. Вероятно, вам удалось сломать мою программу!");
+		throw std::runtime_error("По каким-то неведанным ранее причинам, программа дошла до выполнения этого кода. Вероятно, вам удалось сломать её!");
 	}
 	RatNum QuadEqua::X1() const {
 		return RatNum(Invert(b) - sqrt(Discriminant()), 2 * a);
@@ -61,25 +60,15 @@ if (a < 0) { // тоже, что и умножение уравнения на -1
 
 	double QuadEqua::check_input(void) const { // Соответсвует ли введенная переменная звдвнным параметрам
 		double x;
-		while (!(cin >> x) || x == double(0)) {
+		while (!(std::cin >> x) || x == double(0)) {
 
-			cin.clear();
-			while (cin.get() != '\n');
-			cout << "Ввод не удался. Повторите попытку: ";
+			std::cin.clear();
+			while (std::cin.get() != '\n');
+			std::cout << "Ввод не удался. Повторите попытку: ";
 		}
 		return x;
 	}
-	std::ostream& operator<<(std::ostream& os, QuadEqua& value)
-	{
-		/*if (value.Discriminant() > 0) {
-			if ((double(value.X1()) + double(value.X2())) * value.a != value.Invert(value.b) || double(value.X1()) * double(value.X2()) * value.a != value.c) {
-				cout << "Дальнейшее использование программы может привести к ошибкам. Хотите продолжить(y/n)?" << endl;
-				char c = (char)_getch();
-				if (c != 'y' || c != 'Y' || c != 'д' || c != 'Д')
-					throw std::runtime_error("Такое уравнение не имеет решений!");
-			}
-
-		}*/
+	std::ostream& operator<<(std::ostream& os, QuadEqua& value){
 		system("cls");
 		os << "\t\t\t\t";
 		if (value.a == 1)
@@ -93,42 +82,42 @@ if (a < 0) { // тоже, что и умножение уравнения на -1
 
 		if (value.c > 0)
 			os << "+";
-		os << value.c << "=0" << endl;
-		os << "D = b*b - 4ac = " << value.Discriminant() << " = " << sqrt(value.Discriminant()) << endl;
+		os << value.c << "=0" << std::endl;
+		os << "D = b*b - 4ac = " << value.Discriminant() << " = " << sqrt(value.Discriminant()) << std::endl;
 		if (value.Discriminant() > 0) {
 
-			os << "Так как D > 0, у уравнения 2 действительных корня:" << endl;
+			os << "Так как D > 0, у уравнения 2 действительных корня:" << std::endl;
 
 			if (value.X1().get_denumerator() == 1)
-				os << "X1 = " << value.X1().get_numerator() << endl;
+				os << "X1 = " << value.X1().get_numerator() << std::endl;
 			else if (value.X1().get_denumerator() == value.X1().get_numerator())
-				os << "X1 = " << 1 << endl;
+				os << "X1 = " << 1 << std::endl;
 			else
-				os << "X1 = " << value.X1() << " = " << double(value.X1()) << endl;
+				os << "X1 = " << value.X1() << " = " << double(value.X1()) << std::endl;
 
 
 			if (value.X2().get_denumerator() == 1)
-				os << "X2 = " << value.X2().get_numerator() << endl;
+				os << "X2 = " << value.X2().get_numerator() << std::endl;
 			else if (value.X2().get_denumerator() == value.X2().get_numerator())
-				os << "X2 = " << 1 << endl;
+				os << "X2 = " << 1 << std::endl;
 			else
-				os << "X2 = " << value.X2() << " = " << double(value.X2()) << endl;
+				os << "X2 = " << value.X2() << " = " << double(value.X2()) << std::endl;
 
 
 		}
 		else if (value.Discriminant() == 0) {
 
-			os << "Так как D = 0, у уравнения 1 действительный корень:" << endl;
+			os << "Так как D = 0, у уравнения 1 действительный корень:" << std::endl;
 			if (value.X1().get_denumerator() == 1)
-				os << "X = " << value.X1().get_numerator() << endl;
+				os << "X = " << value.X1().get_numerator() << std::endl;
 			else if (value.X1().get_denumerator() == value.X1().get_numerator())
-				os << "X = " << 1 << endl;
+				os << "X = " << 1 << std::endl;
 			else
-				os << "X = " << value.X1() << " = " << double(value.X1()) <<  endl;
+				os << "X = " << value.X1() << " = " << double(value.X1()) << std::endl;
 		}
 
 		else
-			os << "Так как D < 0, у уравнения нет действительных корней." << endl;
+			os << "Так как D < 0, у уравнения нет действительных корней." << std::endl;
 		return os;
 	}
 }

@@ -2,16 +2,18 @@
 #ifndef _RATIONAL_NUMBERS_H
 #define _RATIONAL_NUMBERS_H
 #include <iostream>
-typedef unsigned int long_int;
+
 namespace RATIONAL_NUMBERS
 {
+	typedef unsigned int long_int;
+
 	class RatNum
 	{
 	protected:
-		double numerator;
-		double denumerator;
+		double numerator; // Числитель
+		double denumerator; // Знаменатель
 
-		RatNum& Reduction();
+		RatNum& Reduction(); // Сокращение
 		
 		double NOK(int, int) const; // наименьшее общее кратное
 		double NOD(int, int) const; // наименьший общий делитель
@@ -22,15 +24,13 @@ namespace RATIONAL_NUMBERS
 		RatNum(double, double);
 		~RatNum();
 		
-		operator double();
-		operator long_int();
+		operator double(); // Возврат дроби в в виде десятичной дроби(numerator / denumerator) 
+		operator long_int(); // Возврат дроби в в виде десятичной дроби(numerator / denumerator)
 
-		inline double get_numerator()
-		{
+		inline double get_numerator(){
 			return numerator;
 		}
-		inline double get_denumerator()
-		{
+		inline double get_denumerator(){
 			return denumerator;
 		}
 

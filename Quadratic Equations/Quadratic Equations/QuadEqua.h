@@ -1,28 +1,25 @@
 #pragma once
 #ifndef _QUAD_EQUA_H
 #define _QUAD_EQUA_H
+
 #include <iostream>
 #include <conio.h>
-#include"RationalNumbers.h"
-
-using std::cin;
-using std::cout;
-using std::endl;
+#include "RationalNumbers.h"
 
 namespace Math
 {
-	class QuadEqua : private RatNum
+	class QuadEqua : protected RatNum
 	{
 	private:
-		double a;
-		double b;
-		double c;
+		double a; // Коэффициент перед x^2
+		double b; // Коэффициент перед x
+		double c; // Свободный член 
 
 		double Invert(double) const; // Возвращает обратное значение
 		inline double Discriminant() const {
 			return b*b - 4*a*c;
 		}
-		double check_input(void) const; // Соответсвует ли введенная переменная звдвнным параметрам
+		double check_input(void) const; // Соответсвует ли введенная переменная заданным параметрам
 	public:
 		QuadEqua(double, double, double);
 		QuadEqua(std::istream&);
