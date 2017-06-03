@@ -11,7 +11,7 @@ namespace Math
 		b = b1;
 		c = c1;
 
-		if (a < 0){ // тоже, что и умножение уравнения на -1
+		if (a < 0){ // то же, что и умножение уравнения на -1
 			a = Invert(a);
 			b = Invert(b);
 			c = Invert(c);
@@ -22,7 +22,7 @@ namespace Math
 		b = copy_value.b;
 		c = copy_value.c;
 
-		if (a < 0) { // тоже, что и умножение уравнения на -1
+		if (a < 0) { // то же, что и умножение уравнения на -1
 			a = Invert(a);
 			b = Invert(b);
 			c = Invert(c);
@@ -36,7 +36,7 @@ namespace Math
 		b = check_input();
 		std::cout << "Введите c: ";
 		c = check_input();
-		if (a < 0){ // тоже, что и умножение уравнения на -1
+		if (a < 0){ // то же, что и умножение уравнения на -1
 			a = Invert(a);
 			b = Invert(b);
 			c = Invert(c);
@@ -58,7 +58,7 @@ namespace Math
 		return RatNum(Invert(b) + sqrt(Discriminant()), 2 * a);
 	}
 
-	double QuadEqua::check_input(void) const { // Соответсвует ли введенная переменная звдвнным параметрам
+	double QuadEqua::check_input(void) const { // Соответсвует ли введенная переменная заданным параметрам
 		double x;
 		while (!(std::cin >> x) || x == double(0)) {
 
@@ -83,11 +83,13 @@ namespace Math
 		if (value.c > 0)
 			os << "+";
 		os << value.c << "=0" << std::endl;
+		os.precision(1);
+		os.setf(std::ios_base::fixed, std::ios_base::floatfield);
 		os << "D = b*b - 4ac = " << value.Discriminant() << " = " << sqrt(value.Discriminant()) << std::endl;
 		if (value.Discriminant() > 0) {
 
 			os << "Так как D > 0, у уравнения 2 действительных корня:" << std::endl;
-
+	
 			if (value.X1().get_denumerator() == 1)
 				os << "X1 = " << value.X1().get_numerator() << std::endl;
 			else if (value.X1().get_denumerator() == value.X1().get_numerator())
@@ -106,7 +108,7 @@ namespace Math
 
 		}
 		else if (value.Discriminant() == 0) {
-
+			
 			os << "Так как D = 0, у уравнения 1 действительный корень:" << std::endl;
 			if (value.X1().get_denumerator() == 1)
 				os << "X = " << value.X1().get_numerator() << std::endl;

@@ -16,7 +16,7 @@ namespace Math
 		double c; // Свободный член 
 
 		double Invert(double) const; // Возвращает обратное значение
-		inline double Discriminant() const {
+		inline double Discriminant() const { 
 			return b*b - 4*a*c;
 		}
 		double check_input(void) const; // Соответсвует ли введенная переменная заданным параметрам
