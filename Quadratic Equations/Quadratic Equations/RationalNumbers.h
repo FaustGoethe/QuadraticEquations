@@ -3,10 +3,7 @@
 #define _RATIONAL_NUMBERS_H
 #include <iostream>
 
-namespace RATIONAL_NUMBERS
-{
-	typedef unsigned int long_int;
-
+namespace RATIONAL_NUMBERS{
 	class RatNum
 	{
 	protected:
@@ -19,13 +16,12 @@ namespace RATIONAL_NUMBERS
 		double NOD(int, int) const; // наименьший общий делитель
 	public:
 		RatNum();
-		RatNum(int, long_int);
+		RatNum(int, size_t);
 		RatNum(const RatNum&);
 		RatNum(double, double);
-		~RatNum();
 		
-		operator double(); // ¬озврат дроби в в виде дес€тичной дроби(numerator / denumerator) 
-		operator long_int(); // ¬озврат дроби в в виде дес€тичной дроби(numerator / denumerator)
+		operator double() const; // ¬озврат дроби в в виде дес€тичной дроби(numerator / denumerator) 
+		operator int() const; // ¬озврат дроби в в виде дес€тичной дроби(numerator / denumerator)
 
 		inline double get_numerator(){
 			return numerator;

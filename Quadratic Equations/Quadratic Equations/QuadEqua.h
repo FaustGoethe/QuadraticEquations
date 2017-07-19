@@ -11,17 +11,17 @@ namespace Math
 	class QuadEqua : protected RatNum
 	{
 	private:
-		double a; // Коэффициент перед x^2
-		double b; // Коэффициент перед x
-		double c; // Свободный член 
+		int a; // Коэффициент перед x^2
+		int b; // Коэффициент перед x
+		int c; // Свободный член 
 
-		double Invert(double) const; // Возвращает обратное значение
-		inline double Discriminant() const { 
+		int Invert(int) const; // Возвращает обратное значение
+		inline int Discriminant() const {
 			return b*b - 4*a*c;
 		}
-		double check_input(void) const; // Соответсвует ли введенная переменная заданным параметрам
+		int check_input(void) const; // Соответсвует ли введенная переменная заданным параметрам
 	public:
-		QuadEqua(double, double, double);
+		QuadEqua(int, int, int);
 		QuadEqua(std::istream&);
 		QuadEqua(const QuadEqua&);
 

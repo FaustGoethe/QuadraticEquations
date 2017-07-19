@@ -1,10 +1,9 @@
 #include "RationalNumbers.h"
 
-namespace RATIONAL_NUMBERS
-{
+namespace RATIONAL_NUMBERS{
 	RatNum::RatNum() :numerator(1.0), denumerator(1.0){};
 	RatNum::RatNum(const RatNum& v) :numerator(v.numerator), denumerator(v.denumerator){};
-	RatNum::RatNum(int n, long_int d){
+	RatNum::RatNum(int n, size_t d){
 		if (d != 0)
 		{
 			numerator = n;
@@ -43,11 +42,11 @@ namespace RATIONAL_NUMBERS
 		return a*b / NOD(a, b);
 	}
 
-	RatNum::operator double(){
+	RatNum::operator double() const{
 		return (double)numerator / (double)denumerator;
 	}
-	RatNum::operator long_int(){
-		return (long_int)numerator / (long_int)denumerator;
+	RatNum::operator int() const {
+		return (int)numerator / int(denumerator);
 	}
 	RatNum& RatNum::Reduction(){
 		double nod = NOD(numerator, denumerator);
@@ -88,12 +87,9 @@ namespace RATIONAL_NUMBERS
 		return *this;
 	}
 
-	std::ostream& operator<<(std::ostream& os,const RatNum& Value){
+	std::ostream& operator<<(std::ostream& os, const RatNum& Value){
 		os.precision(3);
 		os << Value.numerator << "/" << Value.denumerator;
 		return os;
-	}
-
-	RatNum::~RatNum(){
 	}
 }
