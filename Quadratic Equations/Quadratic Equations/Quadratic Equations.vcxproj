@@ -141,12 +141,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="QuadEqua.cpp" />
-    <ClCompile Include="RationalNumbers.cpp" />
+    <ClCompile Include="Rational number.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuadEqua.h" />
-    <ClInclude Include="RationalNumbers.h" />
+    <ClInclude Include="Rational number.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,30 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Заголовочные файлы\RatNum">
-      <UniqueIdentifier>{289738e6-70ae-46cf-b2ec-2495de8d3990}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы исходного кода\RatNum">
-      <UniqueIdentifier>{5bb907fe-e7b2-4a7e-8d52-ce132f345f2a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="QuadEqua.cpp">
+    <ClCompile Include="Rational number.cpp">
       <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="RationalNumbers.cpp">
-      <Filter>Файлы исходного кода\RatNum</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuadEqua.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="RationalNumbers.h">
-      <Filter>Заголовочные файлы\RatNum</Filter>
+    <ClInclude Include="Rational number.h">
+      <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

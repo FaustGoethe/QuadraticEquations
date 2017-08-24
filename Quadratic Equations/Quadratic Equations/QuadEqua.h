@@ -1,34 +1,134 @@
-#pragma once
+п»ї#pragma once
 #ifndef _QUAD_EQUA_H
 #define _QUAD_EQUA_H
 
 #include <iostream>
 #include <conio.h>
-#include "RationalNumbers.h"
+#include "Rational number.h"
+#include "Rational number.cpp"
 
 namespace Math
 {
-	class QuadEqua : protected RatNum
+	template<typename T = int>
+	class QuadEqua
 	{
 	private:
-		int a; // Коэффициент перед x^2
-		int b; // Коэффициент перед x
-		int c; // Свободный член 
+		T a; // РљРѕСЌС„С„РёС†РёРµРЅС‚ РїРµСЂРµРґ x^2
+		T b; // РљРѕСЌС„С„РёС†РёРµРЅС‚ РїРµСЂРµРґ x
+		T c; // РЎРІРѕР±РѕРґРЅС‹Р№ С‡Р»РµРЅ 
 
-		int Invert(int) const; // Возвращает обратное значение
+		T Invert(T value) const {
+			return value > 0 ? value*-1 : std::abs(value);
+			
+			throw std::runtime_error("РџРѕ РєР°РєРёРј-С‚Рѕ РЅРµРІРµРґР°РЅРЅС‹Рј СЂР°РЅРµРµ РїСЂРёС‡РёРЅР°Рј, РїСЂРѕРіСЂР°РјРјР° РґРѕС€Р»Р° РґРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ СЌС‚РѕРіРѕ РєРѕРґР°. Р’РµСЂРѕСЏС‚РЅРѕ, РІР°Рј СѓРґР°Р»РѕСЃСЊ СЃР»РѕРјР°С‚СЊ РµС‘!");
+		}
 		inline int Discriminant() const {
 			return b*b - 4*a*c;
 		}
-		int check_input(void) const; // Соответсвует ли введенная переменная заданным параметрам
+		
 	public:
-		QuadEqua(int, int, int);
-		QuadEqua(std::istream&);
-		QuadEqua(const QuadEqua&);
+		QuadEqua() 
+			:a(1), 
+			b(1), 
+			c(1) {};
+		QuadEqua(T aa, T bb, T cc) {
+			if (aa == 0 || bb == 0 || cc == 0) {
+				aa = bb = cc = 1;
+				throw std::runtime_error("РЈСЂР°РІРЅРµРЅРёРµ, СЃРѕСЃС‚Р°РІР»РµРЅРЅРѕРµ РїРѕ РІРІРµРґРµРЅРЅС‹РјРё РІР°РјРё РґР°РЅРЅС‹РјРё, РЅРµ СЏРІР»СЏРµС‚СЃСЏ РєРІР°РґР°С‚РЅС‹Рј Рё СЌС‚РѕР№ РїСЂРѕРіСЂР°РјРјРѕР№ РЅРµ СЂРµС€Р°РµС‚СЃСЏ!\a");
+			}
+			a = aa;
+			b = bb;
+			c = cc;
 
-		RatNum X1() const; // Первый корень(рациональная дробь)
-		RatNum X2() const; // Второй корень(рациональная дробь)
+			if (a < 0) { 
+				a = Invert(a);
+				b = Invert(b);
+				c = Invert(c);
+			}
+		}
+		QuadEqua(const QuadEqua& cp) {
+			a = cp.a;
+			b = cp.b;
+			c = cp.c;
+		}
 
-		friend std::ostream& operator<<(std::ostream&,  QuadEqua&);
+		RTNUM::RatNum<T> X1() const {
+			return { T(Invert(b) - sqrt(Discriminant())), 2 * a };
+		}
+		RTNUM::RatNum<T> X2() const {
+			return { T(Invert(b) + sqrt(Discriminant())), 2 * a };
+		}
+
+		friend std::ostream& operator<<(std::ostream& os, QuadEqua& value) {
+
+			system("cls");
+			os << "\t\t\t\t";
+			if (value.a == 1) {
+				os << "x^2";
+			}
+			else {
+				os << value.a << "x^2";
+			}
+
+			if (value.b > 0) {
+				os << " + ";
+			}
+			os << value.b << "x";
+
+			if (value.c > 0) {
+				os << "+";
+			}
+			os << value.c << "=0" << std::endl;
+
+			os.setf(std::ios_base::fixed, std::ios_base::floatfield);
+			os.precision(0);
+
+			os << "D = b*b - 4ac = sqrt(" << value.Discriminant() << ") = " << sqrt(value.Discriminant()) << std::endl;
+
+			if (value.Discriminant() > 0) {
+				os << "РўР°Рє РєР°Рє D > 0, Сѓ СѓСЂР°РІРЅРµРЅРёСЏ 2 РґРµР№СЃС‚РІРёС‚РµР»СЊРЅС‹С… РєРѕСЂРЅСЏ:" << std::endl;
+
+				if (value.X1().get_denominator() == 1) {
+
+					os << "X1 = " << value.X1().get_numerator() << std::endl;
+				}
+				else if (value.X1().get_denominator() == value.X1().get_numerator()) {
+					os << "X1 = " << 1 << std::endl;
+				}
+				else {
+					os << "X1 = " << value.X1() << " = " << value.X1() << std::endl;
+				}
+
+				if (value.X2().get_denominator() == 1) {
+					os << "X2 = " << value.X2().get_numerator() << std::endl;
+				}
+				else if (value.X2().get_denominator() == value.X2().get_numerator()) {
+					os << "X2 = " << 1 << std::endl;
+				}
+				else {
+					os << "X2 = " << value.X2() << " = " << value.X2() << std::endl;
+				}
+
+			}
+			else if (value.Discriminant() == 0) {
+
+				os << "РўР°Рє РєР°Рє D = 0, Сѓ СѓСЂР°РІРЅРµРЅРёСЏ 1 РґРµР№СЃС‚РІРёС‚РµР»СЊРЅС‹Р№ РєРѕСЂРµРЅСЊ:" << std::endl;
+				if (value.X1().get_denominator() == 1) {
+					os << "X = " << value.X1().get_numerator() << std::endl;
+				}
+				else if (value.X1().get_denominator() == value.X1().get_numerator()) {
+					os << "X = " << 1 << std::endl;
+				}
+				else {
+					os << "X = " << value.X1() << " = " << value.X1() << std::endl;
+				}
+			}
+
+			else {
+				os << "РўР°Рє РєР°Рє D < 0, Сѓ СѓСЂР°РІРЅРµРЅРёСЏ РЅРµС‚ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅС‹С… РєРѕСЂРЅРµР№." << std::endl;
+			}
+			return os;
+		}
 	};
 }
 using namespace Math;

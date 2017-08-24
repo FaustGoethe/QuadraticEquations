@@ -4,7 +4,9 @@
 
 int main(int argc, char* argv[]){
 	setlocale(LC_ALL, "Russian");
-	QuadEqua c(std::cin);
+	QuadEqua<int> c(1,-26,120);
+	
+	//std::cout << double(c.X2());
 	try{
 		std::cout << c;
 	}
