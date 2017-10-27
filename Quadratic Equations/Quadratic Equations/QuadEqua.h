@@ -19,8 +19,6 @@ namespace Math
 
 		T Invert(T value) const {
 			return value > 0 ? value*-1 : std::abs(value);
-			
-			throw std::runtime_error("По каким-то неведанным ранее причинам, программа дошла до выполнения этого кода. Вероятно, вам удалось сломать её!");
 		}
 		inline int Discriminant() const {
 			return b*b - 4*a*c;
@@ -71,7 +69,7 @@ namespace Math
 			}
 
 			if (value.b > 0) {
-				os << " + ";
+				os << "+";
 			}
 			os << value.b << "x";
 
@@ -89,14 +87,13 @@ namespace Math
 				os << "Так как D > 0, у уравнения 2 действительных корня:" << std::endl;
 
 				if (value.X1().get_denominator() == 1) {
-
 					os << "X1 = " << value.X1().get_numerator() << std::endl;
 				}
 				else if (value.X1().get_denominator() == value.X1().get_numerator()) {
 					os << "X1 = " << 1 << std::endl;
 				}
 				else {
-					os << "X1 = " << value.X1() << " = " << value.X1() << std::endl;
+					os << "X1 = " << value.X1() << " = " << (T)value.X1() << std::endl;
 				}
 
 				if (value.X2().get_denominator() == 1) {
@@ -106,7 +103,7 @@ namespace Math
 					os << "X2 = " << 1 << std::endl;
 				}
 				else {
-					os << "X2 = " << value.X2() << " = " << value.X2() << std::endl;
+					os << "X2 = " << value.X2() << " = " << (T)value.X2() << std::endl;
 				}
 
 			}
@@ -120,7 +117,7 @@ namespace Math
 					os << "X = " << 1 << std::endl;
 				}
 				else {
-					os << "X = " << value.X1() << " = " << value.X1() << std::endl;
+					os << "X = " << value.X1() << " = " << (T)value.X1() << std::endl;
 				}
 			}
 

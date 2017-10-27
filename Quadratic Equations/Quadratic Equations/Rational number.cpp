@@ -12,6 +12,7 @@ namespace RATIONAL_NUMBERS {
 			Reduction();
 		}
 		else {
+			std::cerr << "Denominator can't be zero";
 			numerator = denominator = 1;
 		}
 	}

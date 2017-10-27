@@ -4,14 +4,18 @@
 
 int main(int argc, char* argv[]){
 	setlocale(LC_ALL, "Russian");
-	QuadEqua<int> c(1,-26,120);
-	
-	//std::cout << double(c.X2());
+	int a, b, c;
+	std::cin >> a >> b >> c;
+
 	try{
-		std::cout << c;
+		QuadEqua<int> eq(a, b, c);
+		std::cout << eq;
 	}
-	catch (std::runtime_error a){
+	catch (const std::runtime_error& a){
 		std::cout << a.what();
+	}
+	catch (const std::exception& ex) {
+		std::cout << ex.what();
 	}
 	_getch();
 	return 0;
