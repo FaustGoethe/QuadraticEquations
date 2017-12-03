@@ -4,11 +4,9 @@
 
 int main(int argc, char* argv[]){
 	setlocale(LC_ALL, "Russian");
-	int a, b, c;
-	std::cin >> a >> b >> c;
-
 	try{
-		QuadEqua<int> eq(a, b, c);
+		QuadEqua<double> eq;
+		std::cin >> eq;
 		std::cout << eq;
 	}
 	catch (const std::runtime_error& a){

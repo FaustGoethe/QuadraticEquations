@@ -1,6 +1,21 @@
 ﻿  Main.cpp
+c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\Rational number.h(24): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\Rational number.h(23): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\Rational number.h(16): note: выполняется компиляция ссылки на экземпляр шаблон функции "double RATIONAL_NUMBERS::RatNum<T>::NOD(T,T) const"
+          with
+          [
+              T=double
+          ]
+  c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\QuadEqua.h(89): note: выполняется компиляция ссылки на экземпляр шаблон класс "RATIONAL_NUMBERS::RatNum<T>"
+          with
+          [
+              T=double
+          ]
+  c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\QuadEqua.h(60): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  Main.cpp(8): note: выполняется компиляция ссылки на экземпляр шаблон класс "Math::QuadEqua<double>"
+c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\Rational number.h(25): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
   Rational number.cpp
   Создание кода
-  All 36 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 82 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Создание кода завершено
   Quadratic Equations.vcxproj -> C:\Users\Кирилл\Desktop\C++\Quadratic-Equations\Quadratic Equations\x64\Release\Quadratic Equations.exe

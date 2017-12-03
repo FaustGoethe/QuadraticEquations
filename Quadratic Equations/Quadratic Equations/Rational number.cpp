@@ -49,7 +49,7 @@ namespace RATIONAL_NUMBERS {
 	}
 
 	template<typename T> RatNum<T>::operator double()const {
-		return (double)numerator / (double)denominator;
+		return  ((double)numerator / (double)denominator);
 	}
 	template<typename T> RatNum<T>::operator int() const {
 		return (int)numerator / (int)denominator;

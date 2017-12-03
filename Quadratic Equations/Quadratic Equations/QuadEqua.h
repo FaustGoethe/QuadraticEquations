@@ -4,12 +4,13 @@
 
 #include <iostream>
 #include <conio.h>
+#include <string>
 #include "Rational number.h"
 #include "Rational number.cpp"
 
 namespace Math
 {
-	template<typename T = int>
+	template<typename T = double>
 	class QuadEqua
 	{
 	private:
@@ -17,31 +18,26 @@ namespace Math
 		T b; // Коэффициент перед x
 		T c; // Свободный член 
 
-		T Invert(T value) const {
-			return value > 0 ? value*-1 : std::abs(value);
-		}
-		inline int Discriminant() const {
+		inline T Discriminant() const noexcept{
 			return b*b - 4*a*c;
 		}
-		
 	public:
-		QuadEqua() 
-			:a(1), 
-			b(1), 
-			c(1) {};
-		QuadEqua(T aa, T bb, T cc) {
-			if (aa == 0 || bb == 0 || cc == 0) {
-				aa = bb = cc = 1;
-				throw std::runtime_error("Уравнение, составленное по введенными вами данными, не является квадатным и этой программой не решается!\a");
+		QuadEqua() {
+			a = b = c = 1;
+		}
+		QuadEqua(T _a, T _b, T _c) {
+			if (_a == 0 || _b == 0 || _c == 0) {
+				_a = _b = _c = 1;
+				std::cerr << "The equation compiled by the data you have given is not quadratic and the proposed one is not solved!\a" << std::endl;
 			}
-			a = aa;
-			b = bb;
-			c = cc;
+			a = _a;
+			b = _b;
+			c = _c;
 
 			if (a < 0) { 
-				a = Invert(a);
-				b = Invert(b);
-				c = Invert(c);
+				a = -a;
+				b = -b;
+				c = -c;
 			}
 		}
 		QuadEqua(const QuadEqua& cp) {
@@ -51,14 +47,17 @@ namespace Math
 		}
 
 		RTNUM::RatNum<T> X1() const {
-			return { T(Invert(b) - sqrt(Discriminant())), 2 * a };
+			return { T(-b - sqrt(Discriminant())), 2 * a };
 		}
 		RTNUM::RatNum<T> X2() const {
-			return { T(Invert(b) + sqrt(Discriminant())), 2 * a };
+			return { T(-b + sqrt(Discriminant())), 2 * a };
 		}
 
-		friend std::ostream& operator<<(std::ostream& os, QuadEqua& value) {
+		std::string get_typename()const noexcept{
+			return typeid(T).name();
+		}
 
+		friend std::ostream& operator<<(std::ostream& os, const QuadEqua& value) {
 			system("cls");
 			os << "\t\t\t\t";
 			if (value.a == 1) {
@@ -78,9 +77,10 @@ namespace Math
 			}
 			os << value.c << "=0" << std::endl;
 
-			os.setf(std::ios_base::fixed, std::ios_base::floatfield);
-			os.precision(0);
-
+			if (std::string(typeid(T).name()) == "double") {
+				os.setf(std::ios_base::fixed, std::ios_base::floatfield);
+				os.precision(1);
+			}
 			os << "D = b*b - 4ac = sqrt(" << value.Discriminant() << ") = " << sqrt(value.Discriminant()) << std::endl;
 
 			if (value.Discriminant() > 0) {
@@ -93,7 +93,7 @@ namespace Math
 					os << "X1 = " << 1 << std::endl;
 				}
 				else {
-					os << "X1 = " << value.X1() << " = " << (T)value.X1() << std::endl;
+					os << "X1 = " << value.X1() << " = " << double(value.X1()) << std::endl;
 				}
 
 				if (value.X2().get_denominator() == 1) {
@@ -103,7 +103,7 @@ namespace Math
 					os << "X2 = " << 1 << std::endl;
 				}
 				else {
-					os << "X2 = " << value.X2() << " = " << (T)value.X2() << std::endl;
+					os << "X2 = " << value.X2() << " = " << double(value.X2()) << std::endl;
 				}
 
 			}
@@ -125,6 +125,21 @@ namespace Math
 				os << "Так как D < 0, у уравнения нет действительных корней." << std::endl;
 			}
 			return os;
+		}
+		friend std::istream& operator>>(std::istream& is, QuadEqua<T>& value) {
+			std::cout << "Enter a, b, c: ";
+			while (!(is >> value.a >> value.b >> value.c) || value.a == 0 || value.b == 0 || value.c == 0) {
+				is.clear();
+				while (is.get() != '\n');
+				std::cerr << "Invalid value\a" << std::endl;
+			}
+			if(value.a < 0){
+				value.a = -value.a;
+				value.b = -value.b;
+				value.c = -value.c;
+			}
+
+			return is;
 		}
 	};
 }

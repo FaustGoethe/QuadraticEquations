@@ -20,7 +20,7 @@ namespace RATIONAL_NUMBERS
 			return *this;
 		}
 
-		T NOD(const T& lhs, const T& rhs) const {
+		T NOD(T lhs, T rhs) const {
 			int a = lhs;
 			int b = rhs;
 
@@ -33,7 +33,7 @@ namespace RATIONAL_NUMBERS
 			}
 			return a;
 		} 
-		T NOK(const T& lhs, const T& rhs) const {
+		T NOK(T lhs, T rhs) const {
 			auto a = lhs;
 			auto b = rhs;
 
