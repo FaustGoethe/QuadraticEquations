@@ -57,72 +57,50 @@ namespace Math
 			return typeid(T).name();
 		}
 
+		std::ostream& PrintEquation() const {
+			std::cout << "\t\t\t\t";
+			if (a == 1) {
+				std::cout << "x^2";
+			}
+			else {
+				std::cout << a << "x^2";
+			}
+
+			if (b > 0) {
+				std::cout << "+";
+			}
+			std::cout << b << "x";
+
+			if (c > 0) {
+				std::cout << "+";
+			}
+			std::cout << c << "=0" << std::endl;
+			return std::cout;
+		}
+
 		friend std::ostream& operator<<(std::ostream& os, const QuadEqua& value) {
 			system("cls");
-			os << "\t\t\t\t";
-			if (value.a == 1) {
-				os << "x^2";
+			value.PrintEquation();
+
+			auto D = value.Discriminant();
+			os << "D = b*b - 4ac = sqrt(" 
+				<< D << ") = " 
+				<< sqrt(D) << std::endl;
+
+			if (D > 0) {
+				os << "D > 0, equation have 2 rational roots:" << std::endl;
+
+				os << "X1 = " << value.X1() << std::endl;
+				os << "X2 = " << value.X2() << std::endl;
 			}
-			else {
-				os << value.a << "x^2";
-			}
+			else if (D == 0) {
+				os << "D = 0, equation have 1 raional root:" << std::endl;
 
-			if (value.b > 0) {
-				os << "+";
-			}
-			os << value.b << "x";
-
-			if (value.c > 0) {
-				os << "+";
-			}
-			os << value.c << "=0" << std::endl;
-
-			if (std::string(typeid(T).name()) == "double") {
-				os.setf(std::ios_base::fixed, std::ios_base::floatfield);
-				os.precision(1);
-			}
-			os << "D = b*b - 4ac = sqrt(" << value.Discriminant() << ") = " << sqrt(value.Discriminant()) << std::endl;
-
-			if (value.Discriminant() > 0) {
-				os << "Так как D > 0, у уравнения 2 действительных корня:" << std::endl;
-
-				if (value.X1().get_denominator() == 1) {
-					os << "X1 = " << value.X1().get_numerator() << std::endl;
-				}
-				else if (value.X1().get_denominator() == value.X1().get_numerator()) {
-					os << "X1 = " << 1 << std::endl;
-				}
-				else {
-					os << "X1 = " << value.X1() << " = " << double(value.X1()) << std::endl;
-				}
-
-				if (value.X2().get_denominator() == 1) {
-					os << "X2 = " << value.X2().get_numerator() << std::endl;
-				}
-				else if (value.X2().get_denominator() == value.X2().get_numerator()) {
-					os << "X2 = " << 1 << std::endl;
-				}
-				else {
-					os << "X2 = " << value.X2() << " = " << double(value.X2()) << std::endl;
-				}
-
-			}
-			else if (value.Discriminant() == 0) {
-
-				os << "Так как D = 0, у уравнения 1 действительный корень:" << std::endl;
-				if (value.X1().get_denominator() == 1) {
-					os << "X = " << value.X1().get_numerator() << std::endl;
-				}
-				else if (value.X1().get_denominator() == value.X1().get_numerator()) {
-					os << "X = " << 1 << std::endl;
-				}
-				else {
-					os << "X = " << value.X1() << " = " << (T)value.X1() << std::endl;
-				}
+				os << "X = " << value.X1() << std::endl;
 			}
 
 			else {
-				os << "Так как D < 0, у уравнения нет действительных корней." << std::endl;
+				os << "D < 0, equation have not rational roots." << std::endl;
 			}
 			return os;
 		}

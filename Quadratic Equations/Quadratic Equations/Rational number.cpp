@@ -31,10 +31,10 @@ namespace RATIONAL_NUMBERS {
 		auto x = lcm / denominator;
 		auto y = lcm / vv.denominator;
 
-		return { numerator*x + vv.numerator*y, lcm };
+		return { numerator * x + vv.numerator * y, lcm };
 	}
 	template<typename T> RatNum<T> RatNum<T>::operator-(const RatNum& vv) const {
-		return { numerator, denominator } +{-vv.numerator, vv.denominator};
+		return { numerator, denominator } + {-vv.numerator, vv.denominator};
 	}
 	template<typename T> RatNum<T> RatNum<T>::operator*(const RatNum& vv) const {
 		return { numerator * vv.numerator, denominator * vv.denominator };

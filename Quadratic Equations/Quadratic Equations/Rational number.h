@@ -60,9 +60,19 @@ namespace RATIONAL_NUMBERS
 			return denominator;
 		}
 
-		friend std::ostream& operator<<(std::ostream& os, const RatNum& vv) {
-			os << vv.numerator << "/" << vv.denominator;
-			return os;
+		friend std::ostream& operator<<(std::ostream& os, const RatNum<T>& vv) {
+			if (vv.numerator == vv.denominator) {
+				return os << 1;
+			}
+			if (vv.denominator == 1) {
+				return os << vv.numerator;
+			}
+			if (typeid(T).name() == "double") {
+				os.setf(std::ios_base::fixed, std::ios_base::floatfield);
+				os.precision(1);
+			}
+			return os << vv.numerator << "/" << vv.denominator << 
+				" = " << T(vv.numerator / vv.denominator);
 		}
 	};
 }

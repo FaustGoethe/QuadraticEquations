@@ -1,0 +1,16 @@
+*.sln
+*.vcxproj
+*.filters
+*.db
+*.suo
+*.exe
+*.lik
+*.pdb
+*.pdf
+*.txt
+*.docx
+*.user
+
+Debug/
+ipch/
+.vs/

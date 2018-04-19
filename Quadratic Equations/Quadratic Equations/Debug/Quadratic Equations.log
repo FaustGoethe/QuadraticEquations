@@ -6,12 +6,12 @@ c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadra
           [
               T=double
           ]
-  c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\quadequa.h(89): note: выполняется компиляция ссылки на экземпляр шаблон класс "RATIONAL_NUMBERS::RatNum<T>"
+  c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\quadequa.h(93): note: выполняется компиляция ссылки на экземпляр шаблон класс "RATIONAL_NUMBERS::RatNum<T>"
           with
           [
               T=double
           ]
-  c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\quadequa.h(60): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
+  c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\quadequa.h(81): note: при компиляции функции-члена "<Нет данных>" класса класс <Нет данных>
   c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\main.cpp(8): note: выполняется компиляция ссылки на экземпляр шаблон класс "Math::QuadEqua<double>"
 c:\users\кирилл\desktop\c++\quadratic-equations\quadratic equations\quadratic equations\rational number.h(25): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
   Quadratic Equations.vcxproj -> C:\Users\Кирилл\Desktop\C++\Quadratic-Equations\Quadratic Equations\Debug\Quadratic Equations.exe
