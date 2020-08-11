@@ -9,9 +9,6 @@ int main(int argc, char* argv[]){
 		std::cin >> eq;
 		std::cout << eq;
 	}
-	catch (const std::runtime_error& a){
-		std::cout << a.what();
-	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what();
 	}
